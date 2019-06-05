@@ -1,5 +1,5 @@
 import time
-
+import math
 import redis
 from flask import Flask
 
@@ -10,42 +10,24 @@ def stored_primes():
 	return str(cache.lrange('primes',0,-1))+"\n"
 
 def detect_num(n):
- 
-
-	if num > 1: 
-      
-  
-   	for i in range(2, num//2): 
-         
-       
-    	   if (num % i) == 0: 
-        	   return False
-         	  break
-   else: 
-       cache.lpush('primes',n)
-        return True
-  
-else: 
-   return False
-#  if n==2:
-#        cache.lpush('primes',n)
- #       return True;
-  #  x=n%2
-   # if x==0:
-    #    return False
-    #else:
-     #   x=2
-      #  while(x<n):
-       #     a=x%n
-        #    if a==0:
-         #       return False
-          #  else:
-           #     x=x+1
-        #cache.lpush('primes',n)
-        #return True
-
-
-
+        
+        if n==2:
+                cache.lpush('primes',n)
+                return True;
+        x=n%2
+        if x==0:
+                return False
+        else:
+                x=2
+                while(x<=math.sqrt(n)):
+                        a=n%x
+                        if a==0:
+                                return False
+                        else:
+                                x=x+1
+                cache.lpush('primes',n)
+                return True
+                        
 
 @app.route('/isPrime/<int:number>')
 def detect(number):
@@ -59,3 +41,8 @@ def detect(number):
 
 def display():
 	return stored_primes()
+
+#####################White box Testing########################
+def Testisitnumber(n):
+
+

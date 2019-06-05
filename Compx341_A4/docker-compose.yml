@@ -4,7 +4,7 @@ services:
     build: .
     ports:
       - "20386:5000"
-    cpus: 0.2
+    cpus: 4
     mem_limit: 128M
     restart: on-failure
   redis:

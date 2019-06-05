@@ -41,3 +41,6 @@ def detect(number):
 
 def display():
 	return stored_primes()
+
+
+
