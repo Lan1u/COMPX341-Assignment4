@@ -10,7 +10,8 @@ def stored_primes():
 	return str(cache.lrange('primes',0,-1))+"\n"
 
 def detect_num(n):
-        
+        if n<0:
+                return False
         if n==2:
                 cache.lpush('primes',n)
                 return True;
