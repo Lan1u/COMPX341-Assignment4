@@ -10,8 +10,8 @@ def stored_primes():
 	return str(cache.lrange('primes',0,-1))+"\n"
 
 def detect_num(n):
-        if n<0:
-                return False
+        if n==1:
+                  return False;
         if n==2:
                 cache.lpush('primes',n)
                 return True;
@@ -33,6 +33,9 @@ def detect_num(n):
 @app.route('/isPrime/<int:number>')
 def detect(number):
     status=detect_num(number)
+    
+    if number<=0:
+                return'{} cannot be entered\n'.format(number)
     if status:
         return '{} is prime\n'.format(number)
     else:
